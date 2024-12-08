@@ -5,9 +5,6 @@ This project helps you deploy the Helix app for Confluence so that you can talk 
 1. Show me the documents owned by me, Adam Fox
 2. Display the documents last edited by Bob Gelder
 
-Future (with GitHub integration):
-6. How many pull requests are there in the development branch?
-
 
 ## Setup
 
@@ -39,8 +36,5 @@ To deploy the Helix JIRA app:
 bash deploy.sh
 ```
 
-This script will process your configuration and apply it using Helix.
+This script will process your configuration and test it using Helix.
 
-## Requirements
-
-- `envsubst` command (part of GNU gettext utilities)
