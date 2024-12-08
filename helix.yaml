@@ -8,7 +8,7 @@ assistants:
   - name: Confluence API
     description: Connect to Confluence and search and retrieve documents using natural language queries
     url: ${JIRA_HOSTNAME}
-    schema: ./oas/swagger.v3.yaml
+    schema: ./oas/confluence-search.yaml
     headers:
       Authorization: Basic ${AUTH_STRING}
     query: {}
@@ -101,8 +101,8 @@ assistants:
   tests:
   - name: Test Confluence blog post search
     steps:
-      - prompt: what blog posts are there in space Helix Home?
-        expected_output: A single blog post about the weather in Chicago.
+      - prompt: What's been happening on confluence recently?
+        expected_output: Responds with some activity on confluence, specifically a page about "Event-Based System Architecture Design for Order Management System".
 
 triggers: []
 
