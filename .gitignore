@@ -1,1 +1,5 @@
 .env
+report_testrun*
+results_testrun*
+summary_testrun*
+summary_latest.md

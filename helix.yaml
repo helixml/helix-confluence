@@ -66,8 +66,11 @@ assistants:
       ONLY use search parameters from the user messages above - do NOT use search parameters provided in the examples.
 
       Examples of how to specify cql:
+      - "of type page and contains text event" -> "type = 'page' and text ~ 'event'"
       - "with label performance and type blogpost" -> "label = 'performance' and type = 'blogpost'"
       - "with title performance and type blogpost" -> "title = 'performance' and type = 'blogpost'"
+      - "by user bob" -> "user.fullname ~ 'bob'"
+      - "with contributor bob" -> "contributor.fullname ~ 'bob'"
 
     response_success_template: |
       Present the key information in a concise manner and perform any actions requested by the user.
@@ -103,6 +106,9 @@ assistants:
     steps:
       - prompt: What's been happening on confluence recently?
         expected_output: Responds with some activity on confluence, specifically a page about "Event-Based System Architecture Design for Order Management System".
-
+  - name: List content from a specific user
+    steps:
+      - prompt: List pages that Priya Samuel contributed to
+        expected_output: Responds with a list of pages that Priya Samuel contributed to, including one page called "Event-Based System Architecture Design for Order Management System".
 triggers: []
 
