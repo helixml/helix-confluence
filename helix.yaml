@@ -69,8 +69,9 @@ assistants:
       - "of type page and contains text event" -> "type = 'page' and text ~ 'event'"
       - "with label performance and type blogpost" -> "label = 'performance' and type = 'blogpost'"
       - "with title performance and type blogpost" -> "title = 'performance' and type = 'blogpost'"
-      - "by user bob" -> "user.fullname ~ 'bob'"
-      - "with contributor bob" -> "contributor.fullname ~ 'bob'"
+      - "created by user bob" -> "creator.fullname ~ 'bob'"
+      - "by contributor bob" -> "user.fullname ~ 'bob'"
+      - "search for users with name starting with 'jo'" -> "user.fullname ~ 'jo'"
 
     response_success_template: |
       Present the key information in a concise manner and perform any actions requested by the user.
@@ -86,6 +87,8 @@ assistants:
       You should commence by saying "An error occurred while trying to process your request ..." also, if you think it's auth error, ask the user to read this doc https://docs.helix.ml/helix/develop/helix-tools/ (format as markdown)
 
   model: llama3.1:8b-instruct-q8_0
+    - name: 10b-5
+    model: meta-llama/Meta-Llama-3.1-70B-Instruct-Turbo
   name: "Confluence Bot"
   description: "Connect to Confluence and search and retrieve documents"
   avatar: "https://logowik.com/content/uploads/images/592_confluence.jpg"
@@ -104,11 +107,15 @@ assistants:
   tests:
   - name: Test Confluence blog post search
     steps:
-      - prompt: What's been happening on confluence recently?
+      - prompt: What's been happening on confluence?
         expected_output: Responds with some activity on confluence, specifically a page about "Event-Based System Architecture Design for Order Management System".
-  - name: List content from a specific user
+  - name: Search for content from a specific user
     steps:
-      - prompt: List pages that Priya Samuel contributed to
-        expected_output: Responds with a list of pages that Priya Samuel contributed to, including one page called "Event-Based System Architecture Design for Order Management System".
+      - prompt: Search for content that Testy McTestface contributed to
+        expected_output: Responds with a list of pages that Testy McTestface contributed to, including one page called "Event-Based System Architecture Design for Order Management System".
+  - name: Find users with a specific name
+    steps:
+      - prompt: Find users with a name starting with 'Testy'
+        expected_output: Responds with a list of users with a name starting with 'Testy', including one user named "Testy McTestface".
 triggers: []
 
