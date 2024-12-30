@@ -71,6 +71,7 @@ assistants:
       - "with title performance and type blogpost" -> "title = 'performance' and type = 'blogpost'"
       - "by user bob" -> "user.fullname ~ 'bob'"
       - "by contributor bob marley" -> "contributor.fullname ~ 'bob marley'"
+      - "edited on 30th Nov 2024" -> "LastModified >= '2024-11-30'"
 
     response_success_template: |
       Present the key information in a concise manner and perform any actions requested by the user.
@@ -110,5 +111,13 @@ assistants:
     steps:
       - prompt: Search for content that Testy McTestface contributed to
         expected_output: Responds with a list of pages that Testy McTestface contributed to, including one page called "Event-Based System Architecture Design for Order Management System".
+  - name: Search for pages with specific labels
+    steps:
+      - prompt: Search for pages with the label soa
+        expected_output: Responds with a single result describing a page about Service-Oriented Architecture (SOA)
+  - name: Search for content edited on a specific date
+    steps:
+      - prompt: Search for content edited on 30th Nov 2024
+        expected_output: Responds with two results, one describing a page about event-based systems and another about design.        
 triggers: []
 
